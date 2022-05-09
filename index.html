@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <style>
+      .button {
+        width: 200px;
+        height: 32px;
+        margin: 2px;
+        background-color: #F0F0F0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #random {
+        margin-left: 12px;
+        font-size: 16px;
+        width: 20px;
+        height: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      window.onload = () => {
+        var num = 0;
+        var tab = [];
+        var buttons = [];
+
+        var refresh = () => {
+          for (var i = 0; i < 9; ++i) {
+            buttons[i].innerHTML = tab[i];
+          }
+          random.innerHTML = num;
+        }
+
+        var random = document.getElementById("random");
+        for (let i = 0; i < 9; ++i) {
+          tab.push(0);
+          buttons[i] = document.getElementById("button" + i);
+          buttons[i].onclick = () => {
+            tab[i] = num;
+            num = (Math.random() * 100) | 0;
+            refresh();
+          };
+        }
+        refresh();
+
+      }
+
+    </script>
+
+    <div id="random">
+      100
+    </div>
+
+    <table>
+      <tr>
+        <td>
+          <div id="button0" class="button">0</div>
+        </td>
+        <td>
+          <div id="button1" class="button">0</div>
+        </td>
+        <td>
+          <div id="button2" class="button">0</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="button3" class="button">0</div>
+        </td>
+        <td>
+          <div id="button4" class="button">0</div>
+        </td>
+        <td>
+          <div id="button5" class="button">0</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="button6" class="button">0</div>
+        </td>
+        <td>
+          <div id="button7" class="button">0</div>
+        </td>
+        <td>
+          <div id="button8" class="button">0</div>
+        </td>
+      </tr>
+    </table>
+
+  <body>
+
+</html>
