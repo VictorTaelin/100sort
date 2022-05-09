@@ -21,26 +21,41 @@
   <body>
     <script>
       window.onload = () => {
-        var num = 0;
-        var tab = [];
-        var buttons = [];
+        var seen = {};
+        var gen = () => {
+          var num = Math.floor(Math.random() * 100);
+          while (seen[num]) {
+            num = Math.floor(Math.random() * 100);
+          }
+          seen[num] = 1;
+          return num;
+        };
+
+        var num = gen();
+        var tab = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+        var buttons = [[],[],[],[],[]];
 
         var refresh = () => {
-          for (var i = 0; i < 9; ++i) {
-            buttons[i].innerHTML = tab[i];
+          for (var i = 0; i < 5; ++i) {
+            for (var j = 0; j < 5; ++j) {
+              buttons[j][i].innerHTML = tab[j][i];
+            }
           }
           random.innerHTML = num;
         }
 
         var random = document.getElementById("random");
-        for (let i = 0; i < 9; ++i) {
-          tab.push(0);
-          buttons[i] = document.getElementById("button" + i);
-          buttons[i].onclick = () => {
-            tab[i] = num;
-            num = (Math.random() * 100) | 0;
-            refresh();
-          };
+        for (let i = 0; i < 5; ++i) {
+          for (let j = 0; j < 5; ++j) {
+            buttons[j][i] = document.getElementById("button_" + i + "_" + j);
+            buttons[j][i].onclick = () => {
+              if (tab[j][i] === 0) {
+                tab[j][i] = num;
+                num = gen();
+                refresh();
+              }
+            };
+          }
         }
         refresh();
 
@@ -54,39 +69,45 @@
 
     <table>
       <tr>
-        <td>
-          <div id="button0" class="button">0</div>
-        </td>
-        <td>
-          <div id="button1" class="button">0</div>
-        </td>
-        <td>
-          <div id="button2" class="button">0</div>
-        </td>
+        <td><div id="button_0_0" class="button">0</div></td>
+        <td><div id="button_1_0" class="button">0</div></td>
+        <td><div id="button_2_0" class="button">0</div></td>
+        <td><div id="button_3_0" class="button">0</div></td>
+        <td><div id="button_4_0" class="button">0</div></td>
       </tr>
       <tr>
-        <td>
-          <div id="button3" class="button">0</div>
-        </td>
-        <td>
-          <div id="button4" class="button">0</div>
-        </td>
-        <td>
-          <div id="button5" class="button">0</div>
-        </td>
+        <td><div id="button_0_1" class="button">0</div></td>
+        <td><div id="button_1_1" class="button">0</div></td>
+        <td><div id="button_2_1" class="button">0</div></td>
+        <td><div id="button_3_1" class="button">0</div></td>
+        <td><div id="button_4_1" class="button">0</div></td>
       </tr>
       <tr>
-        <td>
-          <div id="button6" class="button">0</div>
-        </td>
-        <td>
-          <div id="button7" class="button">0</div>
-        </td>
-        <td>
-          <div id="button8" class="button">0</div>
-        </td>
+        <td><div id="button_0_2" class="button">0</div></td>
+        <td><div id="button_1_2" class="button">0</div></td>
+        <td><div id="button_2_2" class="button">0</div></td>
+        <td><div id="button_3_2" class="button">0</div></td>
+        <td><div id="button_4_2" class="button">0</div></td>
+      </tr>
+      <tr>
+        <td><div id="button_0_3" class="button">0</div></td>
+        <td><div id="button_1_3" class="button">0</div></td>
+        <td><div id="button_2_3" class="button">0</div></td>
+        <td><div id="button_3_3" class="button">0</div></td>
+        <td><div id="button_4_3" class="button">0</div></td>
+      </tr>
+      <tr>
+        <td><div id="button_0_4" class="button">0</div></td>
+        <td><div id="button_1_4" class="button">0</div></td>
+        <td><div id="button_2_4" class="button">0</div></td>
+        <td><div id="button_3_4" class="button">0</div></td>
+        <td><div id="button_4_4" class="button">0</div></td>
       </tr>
     </table>
+
+    <div>
+      Seu objetivo é preencher a tabela, tentando manter as linhas e colunas em ordem crescente.
+    </div>
 
   <body>
 
